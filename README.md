@@ -1,12 +1,153 @@
 # SQL-Date-Functions-Date-Math
 A collection of Databricks SQL exercises showcasing database design, data transformation, date functions, conditional logic, and query optimization using Spark SQL.
+# 📅 Databricks SQL Date Functions
+
+## 📌 Project Overview
+
+This project demonstrates the use of **Date Functions in Databricks (Spark SQL)** through practical business scenarios. The exercises cover creating tables, inserting sample data, manipulating dates, extracting date components, formatting dates, and classifying records using conditional logic.
+
+The project is designed to strengthen SQL skills commonly used by Data Analysts, Business Analysts, and Data Engineers when working with transactional and customer data.
+
+---
+
+## 🎯 Objectives
+
+- Create SQL tables using Databricks Spark SQL
+- Insert sample data into tables
+- Perform date calculations
+- Format dates for reporting
+- Extract year, month, and day from dates
+- Calculate customer age
+- Calculate days between dates
+- Add days to dates
+- Classify records using CASE statements
+
+---
+
+## 🛠 Technologies Used
+
+- Databricks
+- Spark SQL
+- GitHub
+
+---
+
+## 📂 Tables Created
+
+The following tables were created during the exercises:
+
+- SALESQ3
+- TRANSACTIONS
+- DELIVERIES
+- EMPLOYEES
+- ONLINE_ORDERS
+- PAYMENT_DATES
+- CUSTOMER_PURCHASES
+- SHIPPING_ORDERS
+- YEARLY_ORDERS
+- BOOKINGS
+- CAMPAIGN_SENDS
+- INVOICE_DATES
+- CUSTOMER_BIRTHDAYS
+- ORDERS
+
+---
+
+## 📚 Date Functions Covered
+
+This project demonstrates the following Databricks SQL date functions:
+
+| Function | Purpose |
+|----------|---------|
+| `CURRENT_DATE()` | Returns today's date |
+| `DATEDIFF()` | Calculates the difference between two dates |
+| `DATE_ADD()` | Adds a specified number of days to a date |
+| `TO_DATE()` | Converts a string into a date |
+| `DATE_FORMAT()` | Formats dates for reporting |
+| `DATE_TRUNC()` | Returns the first day of a specified date period |
+| `YEAR()` | Extracts the year from a date |
+| `MONTH()` | Extracts the month from a date |
+| `DAY()` | Extracts the day from a date |
+| `DAYOFWEEK()` | Returns the day of the week as a number |
+| `MONTHS_BETWEEN()` | Calculates the number of months between two dates |
+
+---
+
+## 📊 Business Scenarios Implemented
+
+The project includes SQL solutions for:
+
+- Calculating customer age
+- Identifying active, at-risk, and inactive customers
+- Calculating days since last purchase
+- Determining expected delivery dates
+- Extracting booking year, month, and day
+- Formatting invoice dates for reports
+- Extracting order year
+- Identifying weekday and weekend orders
+- Finding the first day of each month
+- Converting text values to dates
+
+---
+
+## 💡 Example Query
+
+```sql
+SELECT
+    customer_id,
+    customer_name,
+    last_purchase_date,
+    datediff(current_date(), last_purchase_date) AS days_since_last_purchase,
+    CASE
+        WHEN datediff(current_date(), last_purchase_date) <= 30 THEN 'Active Customer'
+        WHEN datediff(current_date(), last_purchase_date) BETWEEN 31 AND 90 THEN 'At Risk Customer'
+        ELSE 'Inactive Customer'
+    END AS customer_status
+FROM CUSTOMER_PURCHASES;
+```
+
+---
+
+## 🎓 Skills Demonstrated
+
+- SQL Programming
+- Spark SQL
+- Date and Time Functions
+- Data Transformation
+- Data Cleaning
+- Business Reporting
+- Conditional Logic
+- Database Design
+- Analytical Query Writing
+- Customer Segmentation
+
+---
+
+## 🚀 Learning Outcomes
+
+Through this project, I gained hands-on experience with Databricks Spark SQL by applying date functions to solve real-world business problems. These exercises strengthened my understanding of data transformation, reporting, and analytical query development while improving my ability to write clean and efficient SQL code.
+
+---
+
+## 👤 Author
+
+**Talifhani Nemutudi**
+
+Aspiring Data Analyst | SQL | Power BI | Excel | Databricks | Financial Analytics
+
+---
+
+## 📄 License
+
+This project is intended for educational and portfolio purposes.
+
+-----------------------------------------------------------SQL QUERIES-----------------------------------------------------------------------------
 -- Create the orders table
 CREATE OR REPLACE TABLE orders (
     order_id INT PRIMARY KEY,
     customer_id INT NOT NULL,
     order_date DATE NOT NULL
 );
-
 
 INSERT INTO orders (order_id, customer_id, order_date)
 VALUES
